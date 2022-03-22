@@ -3,7 +3,7 @@
 "use strict";
 
 const assert = require("assert");
-const playwright = require("/nodejs/node_modules/playwright");
+const playwright = require("playwright");
 const {LoginPage} = require ("Login");
 
 let browser, context, page;
