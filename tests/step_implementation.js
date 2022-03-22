@@ -20,7 +20,8 @@ step("Check Webpage <pw_webpage>.", async (pw_webpage) => {
   await page.goto(pw_webpage);
 });
 
-step("Say hello to <pw_webpage>", async (pw_webpage) => {page.on('dialog', async (dialog) => {
+step("Say hello to <pw_webpage>", async (pw_webpage) => {
+  page.on('dialog', async (dialog) => {
     console.log(dialog.message("Hello to " + pw_webpage));
     await dialog.dismiss();
   });
@@ -55,7 +56,7 @@ step("Login with valid credentials", async () => {
 
 step("Login with invalid credentials", async () => {
   page = await context.newPage();
-	let loginPage = new LoginPage(page);
+  let loginPage = new LoginPage(page);
   await loginPage.navigate();
   await loginPage.login("demo","mode1");
   let name = await loginPage.getInnerText();
