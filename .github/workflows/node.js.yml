@@ -30,7 +30,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
     #- run: npm run build --if-present
-    #- run: npm test
+    - run: npm init -y
     - name: Setup gauge
       run: npm install -g @getgauge/cli
     - run: gauge install js    
