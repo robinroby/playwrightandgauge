@@ -20,8 +20,7 @@ step("Check Webpage <pw_webpage>.", async (pw_webpage) => {
   await page.goto(pw_webpage);
 });
 
-step("Say hello to <pw_webpage>", async (pw_webpage) => {
-	page.on('dialog', async (dialog) => {
+step("Say hello to <pw_webpage>", async (pw_webpage) => {page.on('dialog', async (dialog) => {
     console.log(dialog.message("Hello to " + pw_webpage));
     await dialog.dismiss();
   });
@@ -44,7 +43,7 @@ step("Navigate to Webpage <k6_webpage>", async (k6_webpage) => {
 //Xray playwright example
 step("Login with valid credentials", async () => {
   page = await context.newPage();
-	let loginPage = new LoginPage(page);
+  let loginPage = new LoginPage(page);
   await loginPage.navigate();
   await loginPage.login("demo","mode");
   let name = await loginPage.getInnerText();
