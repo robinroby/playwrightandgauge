@@ -1,6 +1,6 @@
 # playwrightandgauge
 
-An example project illustrating testing E2E with "BDD" Gauge +PLaywright, top and scalable frameworks until 03/2022.
+An example project illustrating testing E2E with "ATDD/BDD" Gauge +PLaywright, top and scalable frameworks until 03/2022.
 
 
 ## About
