@@ -5,36 +5,38 @@ name: Gauge & Playwright CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - setup
   pull_request:
-    branches: [ main ]
+    branches: 
+      - main
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    name: ${{ matrix.os }} - Node.js ${{ matrix.node-version }}
     strategy:
+      fail-fast: false
       matrix:
-        node-version: [12.x, 14.x, 16.x]
-
+        os: [ubuntu-latest, macos-latest]
+        node-version: [16, 18, 20]       
+    runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        node-version: ${{ matrix.node-version }}     
     - name: Check node version
       run: node -v
+    - run: pwd  
     - name: Install dependencies
       run: npm ci
-    #- run: npm run build --if-present
-    - run: npm init -y
+    - run: npm init -y   
     - name: Setup gauge
       run: npm install -g @getgauge/cli
     - run: gauge install js    
-    - name: Install Playwright Lib
-      run: npm i -D playwright
-    - name: Run test with BDD Gauge using Playwright
-      run: gauge run ./specs/example.spec
+    - name: Install Playwright Lib + Browser
+      run: npm i -D playwright @playwright/browser-chromium @playwright/browser-firefox @playwright/browser-webkit
+    - name: Reinstall gauge Cli
+      run: npm install -g @getgauge/cli
