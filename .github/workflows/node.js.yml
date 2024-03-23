@@ -3,17 +3,10 @@
 
 name: Gauge & Playwright CI
 
-on:
-  push:
-    branches:
-      - main
-      - setup
-  pull_request:
-    branches: 
-      - main
+on: [push] 
 
 jobs:
-  build:
+  build_environment:
     name: ${{ matrix.os }} - Node.js ${{ matrix.node-version }}
     strategy:
       fail-fast: false
